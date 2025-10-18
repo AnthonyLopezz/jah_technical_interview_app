@@ -1,0 +1,118 @@
+<div class="container">
+  <h2 class="page-title">Dashboard</h2>
+  <div class="muted">Rango: {{ from || "(auto)" }} — {{ to || "(auto)" }}</div>
+  <div class="filters">
+    <mat-form-field appearance="fill">
+      <mat-label>Desde</mat-label>
+      <input matInput id="from" type="date" [(ngModel)]="from" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hasta</mat-label>
+      <input matInput id="to" type="date" [(ngModel)]="to" />
+    </mat-form-field>
+    <mat-button-toggle-group
+      class="range-toggle"
+      [value]="selectedRange"
+      (change)="applyQuickRange($event.value)"
+    >
+      <mat-button-toggle value="7d">7 días</mat-button-toggle>
+      <mat-button-toggle value="30d">30 días</mat-button-toggle>
+      <mat-button-toggle value="month">Este mes</mat-button-toggle>
+    </mat-button-toggle-group>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="reload()"
+      [disabled]="loading()"
+    >
+      <span *ngIf="!loading()">Aplicar filtros</span>
+      <span *ngIf="loading()">Cargando...</span>
+    </button>
+  </div>
+
+  <div *ngIf="error()" style="color: #b00020">{{ error() }}</div>
+
+  <div class="section-title">Resumen</div>
+  <div class="kpi-grid">
+    <mat-card class="kpi-card mat-elevation-z4 kpi-sales">
+      <mat-icon class="kpi-icon">attach_money</mat-icon>
+      <div>
+        <div class="muted">Ventas totales</div>
+        <div class="kpi-value">
+          {{ kpis()?.totalSales ?? 0 | number : "1.0-0" }}
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="kpi-card mat-elevation-z4 kpi-orders">
+      <mat-icon class="kpi-icon">shopping_cart</mat-icon>
+      <div>
+        <div class="muted">Órdenes</div>
+        <div class="kpi-value">{{ kpis()?.totalOrders ?? 0 }}</div>
+      </div>
+    </mat-card>
+    <mat-card class="kpi-card mat-elevation-z4 kpi-ticket">
+      <mat-icon class="kpi-icon">receipt_long</mat-icon>
+      <div>
+        <div class="muted">Ticket promedio</div>
+        <div class="kpi-value">
+          {{ kpis()?.avgTicket ?? 0 | number : "1.2-2" }}
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="section-title">Top 5 productos</div>
+  <mat-card>
+    <mat-card-content>
+      <mat-list class="top5-list">
+        <mat-list-item
+          *ngFor="let p of (kpis()?.topProducts || []).slice(0, 5)"
+        >
+          <div matLine>{{ p.name }}</div>
+          <div matLine class="list-item-secondary">
+            {{ p.sold }} uds 
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-divider></mat-divider>
+  <div class="section-title">Gráficas</div>
+  <div class="chart-grid">
+    <mat-card>
+      <mat-card-title class="chart-title"
+        ><mat-icon class="kpi-icon">timeline</mat-icon> Ventas por
+        día</mat-card-title
+      >
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas #salesChart></canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title class="chart-title"
+        ><mat-icon class="kpi-icon">bar_chart</mat-icon> Top
+        productos</mat-card-title
+      >
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas #topProductsChart></canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title class="chart-title"
+        ><mat-icon class="kpi-icon">payments</mat-icon> Métodos de
+        pago</mat-card-title
+      >
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas #paymentChart></canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
