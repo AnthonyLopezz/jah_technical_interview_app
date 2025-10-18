@@ -1,0 +1,72 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 1rem;
+}
+mat-card {
+  max-width: 420px;
+  width: 100%;
+  background: var(--surface-1);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  color: var(--text);
+  padding: 20px;
+}
+mat-card-title {
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.mat-mdc-form-field {
+  width: 100%;
+  --mdc-filled-text-field-container-color: var(--surface-1);
+  --mdc-filled-text-field-label-ink-color: var(--text);
+  --mdc-filled-text-field-input-text-color: var(--text);
+  --mdc-filled-text-field-caret-color: var(--text);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--accent);
+  --mdc-filled-text-field-active-indicator-color: var(--surface-border);
+  --mdc-filled-text-field-hover-active-indicator-color: var(--surface-border);
+}
+.mat-mdc-form-field .mdc-text-field--filled {
+  border-radius: var(--radius-lg);
+}
+.mat-mdc-form-field .mdc-text-field__input::placeholder {
+  color: var(--text-muted);
+}
+.mt-3 {
+  margin-top: 1rem;
+}
+.error-msg {
+  color: var(--error);
+}
+button.mat-mdc-raised-button.mat-primary {
+  background-color: var(--primary);
+  color: #0f1115;
+}
+button.mat-mdc-raised-button.mat-primary:hover {
+  filter: brightness(1.06);
+}
+.login-wrapper form {
+  display: grid;
+  gap: 14px;
+}
+.title-icon {
+  font-size: 22px;
+  vertical-align: middle;
+  margin-right: 6px;
+  color: var(--accent);
+}
+.subtitle {
+  margin-top: -4px;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.loading-flex {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
