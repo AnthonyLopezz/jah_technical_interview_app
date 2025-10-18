@@ -1,0 +1,27 @@
+/* Dark palette variables for the app */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg: #0f1115;
+  --surface-1: #141821;
+  --surface-2: #1b2130;
+  --surface-3: #22293c;
+  --surface-border: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --text: #e5e7eb;
+  --text-muted: rgba(229, 231, 235, 0.64);
+
+  /* Accent palette */
+  --primary: #7aa2f7;
+  --accent: #20c997;
+  --success: #9ece6a;
+  --warning: #ffcb6b;
+  --error: #f7768e;
+
+  /* Shadows & radii */
+  --shadow-1: 0 12px 24px rgba(0, 0, 0, 0.28);
+  --radius-lg: 12px;
+  --card-padding: 10px 14px;
+}

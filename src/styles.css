@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import './styles/variables.css';
+
+/* Global dark background */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Simple spacing helper */
+.container-padding {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Altura fija para contenedores de gráficos */
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .chart-container {
+    height: 360px;
+  }
+}
